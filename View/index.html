@@ -1,0 +1,82 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Inventory Web Application</title>
+  
+  <script type="text/javascript" src="../Model/logistics_companyModel.js"></script>
+  <script type="text/javascript" src="../Model/warehouseModel.js"></script>
+  <script type="text/javascript" src="../Model/inventoryModel.js"></script>
+  <script type="text/javascript" src="../Controller/script.js"></script>
+
+</head>
+
+<body>
+
+  <div name="warehouse_entry">
+    <h1>Create a warehouse to get started</h1>
+      <input type = "text" id= "warehouse_name" placeholder="Name of Warehouse" required><br>
+      <button onclick="createWarehouse(document.getElementById('warehouse_name').value)">Create Warehouse</button>
+  </div>
+
+    <div name = "selected_option" style="display:none;">
+      <h1> Select an option </h1>
+      <button type="button" onclick="optionButtonPressed('addItem')">Add Item</button>
+      <button type="button" onclick="optionButtonPressed('updateQuantity')">Update Quantity</button>
+      <!-- <button type ="button" onclick="optionButtonPressed('updateName')">Update Name</button> -->
+      <button type="button" onclick="optionButtonPressed('deleteItem')">Delete Item</button>
+      <button type="button" onclick="optionButtonPressed('listItems')">View Items</button>
+      <button type="button" onclick="optionButtonPressed('addWarehouse')">Add Warehouse</button>
+      <button type="button" onclick="optionButtonPressed('viewWarehouses')">View Warehouses</button>
+    </div>
+
+
+    <div id = "addItem" name="selections" style="display:none;">
+      <input type = "text" id="item_name" placeholder="Enter Item Name" required><br>
+      <input type = "number" id = "quantity" placeholder="Enter Quantity of Item" required><br>
+      <label>Choose a Warehouse:</label>
+      <select name="warehouses" id= "warehouse_add" required>
+        <option value = "all_warehouses">All</option>
+      </select><br>
+      <button onclick="addItem(document.getElementById('item_name').value,document.getElementById('quantity').value, document.getElementById('warehouse_add').value)">Add Item</button>
+    </div>
+
+    <div id = "listItems"  name = "selections" style="display:none;">
+      <label>Choose a Warehouse:</label>
+      <select name = "warehouses" id = "warehouse_to_display_items" required>
+        <option value = "all_warehouses">All</option>
+      </select><br>
+      <button onclick="displayItems(document.getElementById('warehouse_to_display_items').value)">View Items</button>
+    </div>
+
+
+
+    <div id = "updateQuantity" name = "selections" style="display:none;">
+      <input type = "text"  id="item_name_to_change_quantity" placeholder="Enter Item Name" required><br>
+      <input type = "number" id = "new_quantity" placeholder="Enter Quantity of Item" required><br>
+      <label>Choose a Warehouse:</label>
+      <select  name="warehouses" id ="warehouse_to_update_item_quantity" required>
+        <option></option>
+      </select><br>
+      <button onclick="updateQuantity(document.getElementById('item_name_to_change_quantity').value,document.getElementById('new_quantity').value, document.getElementById('warehouse_to_update_item_quantity').value)">Update Quantity</button>
+    </div>
+
+    <div id = "deleteItem" name = "selections" style="display:none;">
+      <input type = "text" id = "item_name_to_delete" placeholder="Enter Item Name" required><br>
+      <label>Choose a Warehouse:</label>
+      <select  name="warehouses" id = "warehouse_to_delete_item" required>
+        <option value = "all_warehouses">All</option>
+      </select><br>
+      <button onclick="deleteItem(document.getElementById('item_name_to_delete').value, document.getElementById('warehouse_to_delete_item').value)">Delete Item</button>
+    </div>
+
+    <div id="addWarehouse" name = "selections" style="display:none;">
+      <input type = "text" id= "add_warehouse_name" placeholder="Name of Warehouse" required><br>
+      <button onclick="createWarehouse(document.getElementById('add_warehouse_name').value)">Create Warehouse</button>
+    </div>
+    <p id="resMessage"></p>
+
+   </body>
